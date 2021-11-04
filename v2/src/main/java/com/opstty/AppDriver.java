@@ -1,9 +1,6 @@
 package com.opstty;
 
-import com.opstty.job.KindNumber;
-import com.opstty.job.ShowSpecies;
-import com.opstty.job.WordCount;
-import com.opstty.job.DistrictsContainingTrees;
+import com.opstty.job.*;
 import org.apache.hadoop.util.ProgramDriver;
 
 public class AppDriver {

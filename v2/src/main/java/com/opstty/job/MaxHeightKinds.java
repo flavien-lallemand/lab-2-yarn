@@ -1,7 +1,9 @@
 package com.opstty.job;
 
 import com.opstty.mapper.KindNumberMapper;
+import com.opstty.mapper.MaxHeightKindsMapper;
 import com.opstty.reducer.KindNumberReducer;
+import com.opstty.reducer.MaxHeightKindsReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -11,19 +13,19 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class MawHeightKinds {
+public class MaxHeightKinds {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
         if (otherArgs.length < 2) {
-            System.err.println("Usage: ShowSpecies <in> [<in>...] <out>");
+            System.err.println("Usage: MaxHeightKinds <in> [<in>...] <out>");
             System.exit(2);
         }
-        Job job = Job.getInstance(conf, "kindNumber");
-        job.setJarByClass(MawHeightKinds.class);
-        job.setMapperClass(KindNumberMapper.class);
-        job.setCombinerClass(KindNumberReducer.class);
-        job.setReducerClass(KindNumberReducer.class);
+        Job job = Job.getInstance(conf, "maxHeightKinds");
+        job.setJarByClass(MaxHeightKinds.class);
+        job.setMapperClass(MaxHeightKindsMapper.class);
+        job.setCombinerClass(MaxHeightKindsReducer.class);
+        job.setReducerClass(MaxHeightKindsReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         for (int i = 0; i < otherArgs.length - 1; ++i) {
