@@ -33,6 +33,208 @@ Après avoir uploadé le fichier trees.csv sur le edge ainsi que le package nouv
 [flavien.lallemand@hadoop-edge01 ~]$ yarn jar hadoop-examples-mapreduce-1.0-SNAPSHOT-jar-with-dependencies.jar \districtsTreesContaining trees.csv exo1TreesContainingTest4
 ```
 
+Nous obtenons le résultat suivant qui nous prouve que cela a bien fonctionné : 
+```
+[flavien.lallemand@hadoop-edge01 ~]$ hdfs dfs -cat exo1TreesContainingTest4/part-r-00000
+11	1
+12	29
+13	2
+14	3
+15	1
+16	36
+17	1
+18	1
+19	6
+20	3
+3	1
+4	1
+5	2
+6	1
+7	3
+8	5
+9	1
+```
+
+Vous pouvez trouver le code du job, du map et du reducer respectivement dans les classes suivantes : DistrictContainingTrees, TreesMapper & TreesRoundingReducer
+
+Hash du commit : 489f0989d01881fb6e1595dac5e3943066ed7edc
+
+
+### 1.8.2 Show all existing species
+
+Après avoir uploadé le fichier trees.csv sur le edge ainsi que le package nouvellement crée *-with-dependencies.jar, nous éxécutons la commande suivante permettant de lancer le job Map Reduce sur le fichier trees.csv nous donnant la liste des espèces des arbres : 
+
+```
+[flavien.lallemand@hadoop-edge01 ~]$ yarn jar hadoop-examples-mapreduce-1.0-SNAPSHOT-jar-with-dependencies.jar \showSpecies trees.csv showSpecies1.8.2-t13
+```
+
+Nous obtenons le résultat suivant qui nous prouve que cela a bien fonctionné : 
+```
+[flavien.lallemand@hadoop-edge01 ~]$ hdfs dfs -cat showSpecies1.8.2-t13/part-r-00000
+araucana	1
+atlantica	2
+australis	1
+baccata	2
+bignonioides	1
+biloba	5
+bungeana	1
+cappadocicum	1
+carpinifolia	4
+colurna	3
+coulteri	1
+decurrens	1
+dioicus	1
+distichum	3
+excelsior	1
+fraxinifolia	2
+giganteum	5
+giraldii	1
+glutinosa	1
+grandiflora	1
+hippocastanum	3
+ilex	1
+involucrata	1
+japonicum	1
+kaki	2
+libanii	2
+monspessulanum	1
+nigra	3
+nigra laricio	1
+opalus	1
+orientalis	8
+papyrifera	1
+petraea	2
+pomifera	1
+pseudoacacia	1
+sempervirens	1
+serrata	1
+stenoptera	1
+suber	1
+sylvatica	8
+tomentosa	2
+tulipifera	2
+ulmoides	1
+virginiana	2
+x acerifolia	11
+```
+
+Malgrès nos nombreux efforts pour essayer de renvoyer uniquement la liste des espèces et non la liste des espèces ainsi que le nombre d'arbres appartenant à cet espèce.
+
+Vous pouvez trouver le code du job, du map et du reducer respectivement dans les classes suivantes : ShowSpecies, ShowSpeciesMapper & ShowSpeciesReducer
+
+Hash du commit : 01a5c9120a9744f35142b46cbb51e190fc7ca96c
+
+
+### 1.8.3 Number of trees by kinds (easy)
+
+Après avoir uploadé le fichier trees.csv sur le edge ainsi que le package nouvellement crée *-with-dependencies.jar, nous éxécutons la commande suivante permettant de lancer le job Map Reduce sur le fichier trees.csv nous la liste des espèces dans le csv tree.csv nous donant la liste des types d'arbres ainsi que le nombres d'arbres de chaque type : 
+
+```
+[flavien.lallemand@hadoop-edge01 ~]$ yarn jar hadoop-examples-mapreduce-1.0-SNAPSHOT-jar-with-dependencies.jar \kindNumber trees.csv kindNumber1.8.3-t1
+```
+
+Nous obtenons le résultat suivant qui nous prouve que cela a bien fonctionné : 
+```
+[flavien.lallemand@hadoop-edge01 ~]$ hdfs dfs -cat kindNumber1.8.3-t1/part-r-00000
+Acer	3
+Aesculus	3
+Ailanthus	1
+Alnus	1
+Araucaria	1
+Broussonetia	1
+Calocedrus	1
+Catalpa	1
+Cedrus	4
+Celtis	1
+Corylus	3
+Davidia	1
+Diospyros	4
+Eucommia	1
+Fagus	8
+Fraxinus	1
+GENRE	1
+Ginkgo	5
+Gymnocladus	1
+Juglans	1
+Liriodendron	2
+Maclura	1
+Magnolia	1
+Paulownia	1
+Pinus	5
+Platanus	19
+Pterocarya	3
+Quercus	4
+Robinia	1
+Sequoia	1
+Sequoiadendron	5
+Styphnolobium	1
+Taxodium	3
+Taxus	2
+Tilia	1
+Ulmus	1
+Zelkova	4
+```
+
+
+Vous pouvez trouver le code du job, du map et du reducer respectivement dans les classes suivantes : KindNumber, KindNumberMapper & ShowSpeciesReducer
+
+Hash du commit : 489f0989d01881fb6e1595dac5e3943066ed7edc
+
+
+### 1.8.4 Maximum height per kind of tree (average)
+
+Après avoir uploadé le fichier trees.csv sur le edge ainsi que le package nouvellement crée *-with-dependencies.jar, nous éxécutons la commande suivante permettant de lancer le job Map Reduce sur le fichier trees.csv nous la liste des espèces dans le csv tree.csv nous donant la liste des types d'arbres ainsi que le nombres d'arbres de chaque type : 
+
+```
+[flavien.lallemand@hadoop-edge01 ~]$ yarn jar hadoop-examples-mapreduce-1.0-SNAPSHOT-jar-with-dependencies.jar \kindNumber trees.csv kindNumber1.8.3-t1
+```
+
+Nous obtenons le résultat suivant qui nous prouve que cela a bien fonctionné : 
+```
+[flavien.lallemand@hadoop-edge01 ~]$ hdfs dfs -cat kindNumber1.8.3-t1/part-r-00000
+Acer	3
+Aesculus	3
+Ailanthus	1
+Alnus	1
+Araucaria	1
+Broussonetia	1
+Calocedrus	1
+Catalpa	1
+Cedrus	4
+Celtis	1
+Corylus	3
+Davidia	1
+Diospyros	4
+Eucommia	1
+Fagus	8
+Fraxinus	1
+GENRE	1
+Ginkgo	5
+Gymnocladus	1
+Juglans	1
+Liriodendron	2
+Maclura	1
+Magnolia	1
+Paulownia	1
+Pinus	5
+Platanus	19
+Pterocarya	3
+Quercus	4
+Robinia	1
+Sequoia	1
+Sequoiadendron	5
+Styphnolobium	1
+Taxodium	3
+Taxus	2
+Tilia	1
+Ulmus	1
+Zelkova	4
+```
+
+
+Vous pouvez trouver le code du job, du map et du reducer respectivement dans les classes suivantes : KindNumber, KindNumberMapper & ShowSpeciesReducer
+
+Hash du commit : 489f0989d01881fb6e1595dac5e3943066ed7edc
 
 ### Exercices suivants : 
 Reprendre le fonctionnement du job, mapper et reducer du premier exercice avec les treesDistrictsContaining

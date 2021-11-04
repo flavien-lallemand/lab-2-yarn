@@ -1,6 +1,8 @@
 package com.opstty.job;
 
+import com.opstty.mapper.KindNumberMapper;
 import com.opstty.mapper.ShowSpeciesMapper;
+import com.opstty.reducer.KindNumberReducer;
 import com.opstty.reducer.ShowSpeciesReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -11,7 +13,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class ShowSpecies {
+public class KindNumber {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
@@ -19,11 +21,11 @@ public class ShowSpecies {
             System.err.println("Usage: ShowSpecies <in> [<in>...] <out>");
             System.exit(2);
         }
-        Job job = Job.getInstance(conf, "showSpecies");
-        job.setJarByClass(ShowSpecies.class);
-        job.setMapperClass(ShowSpeciesMapper.class);
-        job.setCombinerClass(ShowSpeciesReducer.class);
-        job.setReducerClass(ShowSpeciesReducer.class);
+        Job job = Job.getInstance(conf, "kindNumber");
+        job.setJarByClass(KindNumber.class);
+        job.setMapperClass(KindNumberMapper.class);
+        job.setCombinerClass(KindNumberReducer.class);
+        job.setReducerClass(KindNumberReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         for (int i = 0; i < otherArgs.length - 1; ++i) {
