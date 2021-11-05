@@ -24,6 +24,9 @@ public class AppDriver {
             programDriver.addClass("maxHeightKind", MaxHeightKinds.class,
                     "A map/reduce progarm that list the highest tree by kind from tree.csv");
 
+            programDriver.addClass("sortHeight", SortHeight.class,
+                    "A map/reduce progarm that sort tress buy height from tree.csv");
+
             exitCode = programDriver.run(argv);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
